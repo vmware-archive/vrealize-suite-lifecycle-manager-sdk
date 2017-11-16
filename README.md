@@ -1,26 +1,11 @@
-
-
 # vrealize-suite-lifecycle-manager-sdk
+
+vRealize Suite Lifecycle Manager SDK and API Samples.
 
 ## Overview
 
-## Try it out
-
-### Prerequisites
-
-* Prereq 1
-* Prereq 2
-* Prereq 3
-
-### Build & Run
-
-1. Step 1
-2. Step 2
-3. Step 3
-
-## Documentation
-
-## Releases & Major Branches
+* Postman Collections v2 for categorized individual REST APIs in the
+ /samples/postman/apis folder.
 
 ## Contributing
 
@@ -30,3 +15,5 @@ questions about the CLA process, please refer to our [FAQ](https://cla.vmware.co
 refer to [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
+
+BSD-2

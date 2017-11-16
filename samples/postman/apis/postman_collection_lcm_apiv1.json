@@ -1,0 +1,1748 @@
+{
+	"variables": [],
+	"info": {
+		"name": "LCM API V1",
+		"_postman_id": "e640430a-ab96-fa07-44ee-09260f717bee",
+		"description": "LCM API Version 1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "authorization",
+			"description": "",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var response=JSON.parse(responseBody)",
+									"postman.setEnvironmentVariable(\"token\", response.token)"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{Server}}/lcm/api/v1/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"admin@localhost\",\n\t\"password\": \"vmware\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"url": "{{Server}}/lcm/api/v1/logout",
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "datacenter",
+			"description": "",
+			"item": [
+				{
+					"name": "Create DataCenter",
+					"request": {
+						"url": "{{Server}}/lcm/api/v1/action/create/datacenter",
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"datacenterName\": \"BANGALORE_DATA_CENTER\",\r\n  \"city\": \"Bangalore\",\r\n  \"country\": \"IN\",\r\n  \"atitude\": \"12.97194\",\r\n  \"longitude\": \"77.59369\",\r\n  \"state\": \"Karnataka\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "View DataCenter",
+					"request": {
+						"url": {
+							"raw": "{{Server}}/lcm/api/v1/view/datacenter?datacenterId={{datacenterId}}",
+							"auth": {},
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"lcm",
+								"api",
+								"v1",
+								"view",
+								"datacenter"
+							],
+							"query": [
+								{
+									"key": "datacenterId",
+									"value": "{{datacenterId}}"
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "List DataCenters",
+					"request": {
+						"url": "{{Server}}/lcm/api/v1/view/datacenter",
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "environment",
+			"description": "",
+			"item": [
+				{
+					"name": "Create Environment",
+					"request": {
+						"url": "{{Server}}/lcm/api/v1/action/create/environment",
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"requestId\": \"null\",\n  \"environmentId\": \"\",\n  \"infrastructure\": {\n    \"sourceLink\": \"\",\n    \"properties\": {\n      \"bindPassword\": \"\",\n      \"dataCenterName\": \"Datacenter-Name\",\n      \"vcHostname\": \"vCenter Server Host name\",\n      \"environmentId\": \"\",\n      \"masterVidmAdminUserName\": \"\",\n      \"netmask\": \"Network-Netmask\",\n      \"environmentName\": \"vRealize Suite Large Advance\",\n      \"clusterName\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n      \"enableTelemetry\": \"true\",\n      \"dnsServers\": \"Network-DNS-Server-IPs\",\n      \"diskFormat\": \"Thin\",\n      \"baseDN\": \"\",\n      \"vcPassword\": \"vCenter Server Password\",\n      \"defaultPassword\": \"vRealize Suite Products password\",\n      \"adminEmail\": \"cloud admin email address\",\n      \"adName\": \"\",\n      \"certificateChain\": \"-----BEGIN CERTIFICATE-----\\nMIIG3zC\\nCZImiZPyLGQBGRYFbG9jYWwxEzARBgoJkiaJk/IsZAEZ\\nFnNxYS1\\n-----END CERTIFICATE-----\",\n      \"masterKeyPassphrase\": \"\",\n      \"datastoreName\": \"VC Datastore Name\",\n      \"masterVidmAdminPassword\": \"\",\n      \"masterVidmEnabled\": \"\",\n      \"uberAdmin\": \"\",\n      \"license\": \"\",\n      \"privateKey\": \"-----BEGIN RSA PRIVATE KEY-----\\nMIIEpQIBAAKCA\\n4Hf/7hp59x\\nGGlHmsQAidubXQdBXMGgxibGZz/6cEoUs3+EWTIg0pLt3a78yCkK9wLZ/U=\\n-----END RSA PRIVATE KEY-----\",\n      \"bindDN\": \"\",\n      \"vmNetwork\": \"Network-Portgroup\",\n      \"masterPrivateKey\": \"-----BEGIN RSA PRIVATE KEY-----\\nMIIEpQIBAAKCA\\n4Hf/7hp59x\\nGGlHmsQAidubXQdBXMGgxibGZz/6cEoUs3+EWTIg0pLt3a78yCkK9wLZ/U=\\n-----END RSA PRIVATE KEY-----\",\n      \"masterVidmHostName\": \"\",\n      \"groupDN\": \"\",\n      \"masterVidmCloudAdminGroup\": \"\",\n      \"vcUsername\": \"vCenter Server Username\",\n      \"domain\": \"\",\n      \"acceptEULA\": \"true\",\n      \"keyPassphrase\": \"\",\n      \"gateway\": \"Network-Gateway\",\n      \"searchpath\": \"\",\n      \"masterCertificateChain\": \"-----BEGIN CERTIFICATE-----\\nMIIG3zC\\nCZImiZPyLGQBGRYFbG9jYWwxEzARBgoJkiaJk/IsZAEZ\\nFnNxYS1\\n-----END CERTIFICATE-----\"\n    }\n  },\n  \"encoded\": false,\n  \"products\": [\n    {\n      \"id\": \"vrli\",\n      \"version\": \"4.5.0\",\n      \"clusterVIP\": [],\n      \"properties\": {\n        \"vrliClusterVips\": \"vRLI-Cluster-IP#vRLI-Cluster-IP-Hostname\"\n      },\n      \"nodes\": [\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"vrli-master\",\n          \"properties\": {\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"vrliLicenseKey\": \"\",\n            \"installerLocation\": \"/data/productlinks/vrli/4.5.0/install/vrli.ova\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"ipAddress\": \"vRLI-IP\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"masterVidmAdminPassword\": \"\",\n            \"uberAdmin\": \"\",\n            \"network\": \"Network-Portgroup\",\n            \"masterVidmEnabled\": \"\",\n            \"vrliAdminEmail\": \"\",\n            \"hostname\": \"vRLI-Hostname\",\n            \"password\": \"vCenter Server Password\",\n            \"masterVidmHostName\": \"\",\n            \"masterVidmAdminUserName\": \"\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-vrli-master\",\n            \"diskFormat\": \"Thin\",\n            \"vrliClusterVips\": \"vRLI-Cluster-IP#vRLI-Cluster-IP-Hostname\",\n            \"searchpath\": \"\",\n            \"gateway\": \"Network-Gateway\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"vrli-worker\",\n          \"properties\": {\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"installerLocation\": \"/data/productlinks/vrli/4.5.0/install/vrli.ova\",\n            \"ipAddress\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"network\": \"Network-Portgroup\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-vrli-worker-01\",\n            \"diskFormat\": \"Thin\",\n            \"gateway\": \"Network-Gateway\",\n            \"searchpath\": \"\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"vrli-worker\",\n          \"properties\": {\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"installerLocation\": \"/data/productlinks/vrli/4.5.0/install/vrli.ova\",\n            \"ipAddress\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"network\": \"Network-Portgroup\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-vrli-worker-02\",\n            \"diskFormat\": \"Thin\",\n            \"gateway\": \"Network-Gateway\",\n            \"searchpath\": \"\"\n          }\n        }\n      ]\n    },\n    {\n      \"id\": \"vra\",\n      \"version\": \"7.3.0\",\n      \"clusterVIP\": [\n        {\n          \"type\": \"vra\",\n          \"hostname\": \"vRA-LoadBalancer-Hostname\",\n          \"ipAddress\": \"vRA-LoadBalancer-IP\"\n        },\n        {\n          \"type\": \"iaas-web\",\n          \"hostname\": \"IaaS-Web-LoadBalancer-Hostname\",\n          \"ipAddress\": \"IaaS-Web-LoadBalancer-IP\"\n        },\n        {\n          \"type\": \"iaas-manager\",\n          \"hostname\": \"IaaS-Manager-Service-LoadBalancer-Hostname\",\n          \"ipAddress\": \"IaaS-Manager-Service-LoadBalancer-IP\"\n        }\n      ],\n      \"properties\": {\n        \"windowsPassword\": \"\",\n        \"windowsUsername\": \"\"\n      },\n      \"nodes\": [\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"vra-server-primary\",\n          \"properties\": {\n            \"vidmVraDisabledAdvanced\": \"\",\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"certificateChain\": \"\",\n            \"installerLocation\": \"/data/productlinks/vra/7.3.0/install/vra.ova\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"ipAddress\": \"vRA-IP\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"network\": \"Network-Portgroup\",\n            \"vidmPassword\": \"\",\n            \"privateKey\": \"\",\n            \"licenseKey\": \"\",\n            \"hostname\": \"vRA-Hostname\",\n            \"password\": \"vCenter Server Password\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-vra-server-primary\",\n            \"keyPassphrase\": \"\",\n            \"gateway\": \"Network-Gateway\",\n            \"searchpath\": \"\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"vra-server-secondary\",\n          \"properties\": {\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"installerLocation\": \"/data/productlinks/vra/7.3.0/install/vra.ova\",\n            \"certificateChain\": \"\",\n            \"ipAddress\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"network\": \"Network-Portgroup\",\n            \"vidmPassword\": \"\",\n            \"privateKey\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"hostname\": \"\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-vra-server-secondary\",\n            \"keyPassphrase\": \"\",\n            \"searchpath\": \"\",\n            \"gateway\": \"Network-Gateway\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"db\",\n          \"properties\": {\n            \"useWindowsAuthentication\": \"true\",\n            \"useExistingDatabase\": \"false\",\n            \"password\": \"vCenter Server Password\",\n            \"hostname\": \"\",\n            \"databaseName\": \"iaas\",\n            \"name\": \"db\",\n            \"databaseUserName\": \"\",\n            \"databasePassword\": \"\",\n            \"ipAddress\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"userName\": \"vCenter Server Username\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"iaas-web\",\n          \"properties\": {\n            \"webPassword\": \"\",\n            \"vidmPassword\": \"\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"ipAddress\": \"\",\n            \"name\": \"iaas-web-01\",\n            \"webUserName\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"userName\": \"vCenter Server Username\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"iaas-web\",\n          \"properties\": {\n            \"vidmPassword\": \"\",\n            \"webPassword\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"hostname\": \"\",\n            \"ipAddress\": \"\",\n            \"name\": \"iaas-web-02\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"webUserName\": \"\",\n            \"userName\": \"vCenter Server Username\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"iaas-manager-active\",\n          \"properties\": {\n            \"password\": \"vCenter Server Password\",\n            \"hostname\": \"\",\n            \"msUserName\": \"\",\n            \"msPassword\": \"\",\n            \"name\": \"iaas-manager-active\",\n            \"ipAddress\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"userName\": \"vCenter Server Username\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"iaas-manager-passive\",\n          \"properties\": {\n            \"password\": \"vCenter Server Password\",\n            \"hostname\": \"\",\n            \"msUserName\": \"\",\n            \"msPassword\": \"\",\n            \"name\": \"iaas-manager-passive\",\n            \"ipAddress\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"userName\": \"vCenter Server Username\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"iaas-dem-orchestrator\",\n          \"properties\": {\n            \"demPassword\": \"\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"ipAddress\": \"\",\n            \"name\": \"Demorchestrator-02\",\n            \"demUserName\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"userName\": \"vCenter Server Username\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"iaas-dem-orchestrator\",\n          \"properties\": {\n            \"demPassword\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"hostname\": \"\",\n            \"name\": \"Demorchestrator-01\",\n            \"ipAddress\": \"\",\n            \"demUserName\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"userName\": \"vCenter Server Username\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"iaas-dem-worker\",\n          \"properties\": {\n            \"demPassword\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"hostname\": \"\",\n            \"name\": \"Demworker-01-2\",\n            \"ipAddress\": \"\",\n            \"demUserName\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"userName\": \"vCenter Server Username\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"iaas-dem-worker\",\n          \"properties\": {\n            \"demPassword\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"hostname\": \"\",\n            \"name\": \"Demworker-01-3\",\n            \"ipAddress\": \"\",\n            \"demUserName\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"userName\": \"vCenter Server Username\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"iaas-dem-worker\",\n          \"properties\": {\n            \"demPassword\": \"\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"ipAddress\": \"\",\n            \"name\": \"Demworker-02-2\",\n            \"demUserName\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"userName\": \"vCenter Server Username\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"iaas-dem-worker\",\n          \"properties\": {\n            \"demPassword\": \"\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"name\": \"Demworker-02-3\",\n            \"ipAddress\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"demUserName\": \"\",\n            \"userName\": \"vCenter Server Username\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"iaas-dem-worker\",\n          \"properties\": {\n            \"demPassword\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"hostname\": \"\",\n            \"name\": \"Demworker-01-1\",\n            \"ipAddress\": \"\",\n            \"demUserName\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"userName\": \"vCenter Server Username\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"iaas-dem-worker\",\n          \"properties\": {\n            \"demPassword\": \"\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"name\": \"Demworker-02-1\",\n            \"ipAddress\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"demUserName\": \"\",\n            \"userName\": \"vCenter Server Username\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"proxy-agent-vsphere\",\n          \"properties\": {\n            \"password\": \"vCenter Server Password\",\n            \"hostname\": \"\",\n            \"agentUserName\": \"\",\n            \"name\": \"VCAgent-1\",\n            \"ipAddress\": \"\",\n            \"agentName\": \"VCAgent-1\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"userName\": \"vCenter Server Username\",\n            \"vsphereEndpointName\": \"VCEndpoint-1\",\n            \"agentPassword\": \"\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"proxy-agent-vsphere\",\n          \"properties\": {\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"agentUserName\": \"\",\n            \"ipAddress\": \"\",\n            \"name\": \"VCAgent-2\",\n            \"agentName\": \"VCAgent-2\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"userName\": \"vCenter Server Username\",\n            \"vsphereEndpointName\": \"VCEndpoint-2\",\n            \"agentPassword\": \"\"\n          }\n        }\n      ]\n    },\n    {\n      \"id\": \"vrbc\",\n      \"version\": \"7.3.0\",\n      \"clusterVIP\": [],\n      \"properties\": {\n        \"currency\": \"USD - US Dollar\"\n      },\n      \"nodes\": [\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"vrb-server\",\n          \"properties\": {\n            \"ssoPassword\": \"\",\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"vrbTelemetryEnabled\": \"true\",\n            \"installerLocation\": \"/data/productlinks/vrbc/7.3.0/install/vrbc.ova\",\n            \"tenantPassword\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"network\": \"Network-Portgroup\",\n            \"password\": \"vCenter Server Password\",\n            \"hostname\": \"vRB-Hostname\",\n            \"masterVidmAdminUserName\": \"\",\n            \"netmask\": \"Network-Netmask\",\n            \"diskFormat\": \"Thin\",\n            \"vrbCurrency\": \"USD - US Dollar\",\n            \"certificateChain\": \"\",\n            \"ipAddress\": \"vRB-IP\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"vrbLicenseKey\": \"\",\n            \"userName\": \"vCenter Server Username\",\n            \"masterVidmAdminPassword\": \"\",\n            \"uberAdmin\": \"\",\n            \"masterVidmEnabled\": \"\",\n            \"isTelemetryEnable\": \"true\",\n            \"privateKey\": \"\",\n            \"masterVidmHostName\": \"\",\n            \"domain\": \"\",\n            \"name\": \"S1-vrb-server\",\n            \"searchpath\": \"\",\n            \"gateway\": \"Network-Gateway\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"vrb-collector\",\n          \"properties\": {\n            \"ssoPassword\": \"\",\n            \"cluster\": \"LCM-DC#LCM-CLuster-02\",\n            \"vrbTelemetryEnabled\": \"true\",\n            \"installerLocation\": \"/data/productlinks/vrbc/7.3.0/install/vrbc.ova\",\n            \"tenantPassword\": \"\",\n            \"vCenterHost\": \"lcm-vc.\",\n            \"storage\": \"VC Datastore Name\",\n            \"network\": \"Network-Portgroup\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"masterVidmAdminUserName\": \"\",\n            \"netmask\": \"Network-Netmask\",\n            \"diskFormat\": \"Thin\",\n            \"vrbCurrency\": \"USD - US Dollar\",\n            \"sshEnabled\": \"True\",\n            \"ipAddress\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"vrbLicenseKey\": \"\",\n            \"userName\": \"vCenter Server Username\",\n            \"masterVidmAdminPassword\": \"\",\n            \"isTelemetryEnable\": \"true\",\n            \"masterVidmEnabled\": \"true\",\n            \"uberAdmin\": \"\",\n            \"masterVidmHostName\": \"\",\n            \"domain\": \"\",\n            \"name\": \"S1-vrb-collector\",\n            \"searchpath\": \"\",\n            \"gateway\": \"Network-Gateway\"\n          }\n        }\n      ]\n    },\n    {\n      \"id\": \"vrops\",\n      \"version\": \"6.6.1\",\n      \"clusterVIP\": [],\n      \"properties\": {\n        \"ntpServerIP\": \"NTP Server IP\"\n      },\n      \"nodes\": [\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"master\",\n          \"properties\": {\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"installerLocation\": \"/data/productlinks/vrops/6.6.1/install/vrops.ova\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"network\": \"Network-Portgroup\",\n            \"password\": \"vCenter Server Password\",\n            \"hostname\": \"vROPS-Hostname\",\n            \"masterVidmAdminUserName\": \"\",\n            \"netmask\": \"Network-Netmask\",\n            \"diskFormat\": \"Thin\",\n            \"ntpServer\": \"NTP Server IP\",\n            \"address\": \"vROPS-IP\",\n            \"certificateChain\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"ipAddress\": \"vROPS-IP\",\n            \"userName\": \"vCenter Server Username\",\n            \"masterVidmAdminPassword\": \"\",\n            \"masterVidmEnabled\": \"false\",\n            \"license\": \"\",\n            \"privateKey\": \"\",\n            \"masterVidmHostName\": \"\",\n            \"domain\": \"\",\n            \"name\": \"S1-master\",\n            \"keyPassphrase\": \"\",\n            \"gateway\": \"Network-Gateway\",\n            \"searchpath\": \"\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"replica\",\n          \"properties\": {\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"address\": \"\",\n            \"ipAddress\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"network\": \"Network-Portgroup\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-replica\",\n            \"diskFormat\": \"Thin\",\n            \"searchpath\": \"\",\n            \"gateway\": \"Network-Gateway\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"data\",\n          \"properties\": {\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"address\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"ipAddress\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"extendedStorage\": \"VC Datastore Name\",\n            \"network\": \"Network-Portgroup\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-data-01\",\n            \"diskFormat\": \"Thin\",\n            \"gateway\": \"Network-Gateway\",\n            \"searchpath\": \"\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"data\",\n          \"properties\": {\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"address\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"ipAddress\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"extendedStorage\": \"VC Datastore Name\",\n            \"network\": \"Network-Portgroup\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-data-02\",\n            \"diskFormat\": \"Thin\",\n            \"gateway\": \"Network-Gateway\",\n            \"searchpath\": \"\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"data\",\n          \"properties\": {\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"address\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"ipAddress\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"extendedStorage\": \"VC Datastore Name\",\n            \"network\": \"Network-Portgroup\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-data-03\",\n            \"diskFormat\": \"Thin\",\n            \"gateway\": \"Network-Gateway\",\n            \"searchpath\": \"\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"data\",\n          \"properties\": {\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"address\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"ipAddress\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"extendedStorage\": \"VC Datastore Name\",\n            \"network\": \"Network-Portgroup\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-data-04\",\n            \"diskFormat\": \"Thin\",\n            \"gateway\": \"Network-Gateway\",\n            \"searchpath\": \"\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"data\",\n          \"properties\": {\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"address\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"ipAddress\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"extendedStorage\": \"VC Datastore Name\",\n            \"network\": \"Network-Portgroup\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-data-05\",\n            \"diskFormat\": \"Thin\",\n            \"gateway\": \"Network-Gateway\",\n            \"searchpath\": \"\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"data\",\n          \"properties\": {\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"address\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"ipAddress\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"extendedStorage\": \"VC Datastore Name\",\n            \"network\": \"Network-Portgroup\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-data-06\",\n            \"diskFormat\": \"Thin\",\n            \"gateway\": \"Network-Gateway\",\n            \"searchpath\": \"\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"data\",\n          \"properties\": {\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"address\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"ipAddress\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"extendedStorage\": \"VC Datastore Name\",\n            \"network\": \"Network-Portgroup\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-data-07\",\n            \"diskFormat\": \"Thin\",\n            \"gateway\": \"Network-Gateway\",\n            \"searchpath\": \"\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"data\",\n          \"properties\": {\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"address\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"ipAddress\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"extendedStorage\": \"VC Datastore Name\",\n            \"network\": \"Network-Portgroup\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-data-08\",\n            \"diskFormat\": \"Thin\",\n            \"gateway\": \"Network-Gateway\",\n            \"searchpath\": \"\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"data\",\n          \"properties\": {\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"address\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"ipAddress\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"extendedStorage\": \"VC Datastore Name\",\n            \"network\": \"Network-Portgroup\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-data-09\",\n            \"diskFormat\": \"Thin\",\n            \"gateway\": \"Network-Gateway\",\n            \"searchpath\": \"\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"data\",\n          \"properties\": {\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"address\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"ipAddress\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"extendedStorage\": \"VC Datastore Name\",\n            \"network\": \"Network-Portgroup\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-data-10\",\n            \"diskFormat\": \"Thin\",\n            \"gateway\": \"Network-Gateway\",\n            \"searchpath\": \"\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"data\",\n          \"properties\": {\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"address\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"ipAddress\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"extendedStorage\": \"VC Datastore Name\",\n            \"network\": \"Network-Portgroup\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-data-11\",\n            \"diskFormat\": \"Thin\",\n            \"gateway\": \"Network-Gateway\",\n            \"searchpath\": \"\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"data\",\n          \"properties\": {\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"address\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"ipAddress\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"extendedStorage\": \"VC Datastore Name\",\n            \"network\": \"Network-Portgroup\",\n            \"hostname\": \"\",\n            \"password\": \"vCenter Server Password\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-data-12\",\n            \"diskFormat\": \"Thin\",\n            \"gateway\": \"Network-Gateway\",\n            \"searchpath\": \"\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"remotecollector\",\n          \"properties\": {\n            \"cluster\": \"VC-Datacenter-Name#VC-Cluster-Name\",\n            \"address\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"ipAddress\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"network\": \"Network-Portgroup\",\n            \"password\": \"vCenter Server Password\",\n            \"hostname\": \"\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-remotecollector-01\",\n            \"ntpServer\": \"NTP Server IP\",\n            \"diskFormat\": \"Thin\",\n            \"searchpath\": \"\",\n            \"gateway\": \"Network-Gateway\"\n          }\n        },\n        {\n          \"sourceLink\": \"\",\n          \"type\": \"remotecollector\",\n          \"properties\": {\n            \"cluster\": \"LCM-DC#LCM-CLuster-02\",\n            \"address\": \"\",\n            \"dns\": \"Network-DNS-Server-IPs\",\n            \"ipAddress\": \"\",\n            \"vCenterHost\": \"vCenter Server Host name\",\n            \"storage\": \"VC Datastore Name\",\n            \"userName\": \"vCenter Server Username\",\n            \"network\": \"Network-Portgroup\",\n            \"password\": \"vCenter Server Password\",\n            \"hostname\": \"\",\n            \"netmask\": \"Network-Netmask\",\n            \"domain\": \"\",\n            \"name\": \"S1-vrops-remotecollector-02\",\n            \"ntpServer\": \"NTP Server IP\",\n            \"diskFormat\": \"Thin\",\n            \"searchpath\": \"\",\n            \"gateway\": \"Network-Gateway\"\n          }\n        }\n      ]\n    }\n  ]\n}"
+						},
+						"description": "Creates environment with provided vRealize Suite Products payload in the body."
+					},
+					"response": []
+				},
+				{
+					"name": "View Environment",
+					"request": {
+						"url": {
+							"raw": "{{Server}}/lcm/api/v1/view/environment?environmentId={{environmentId}}",
+							"auth": {},
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"lcm",
+								"api",
+								"v1",
+								"view",
+								"environment"
+							],
+							"query": [
+								{
+									"key": "environmentId",
+									"value": "{{environmentId}}"
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "List Environments",
+					"request": {
+						"url": "{{Server}}/lcm/api/v1/view/environment",
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "node",
+			"description": "",
+			"item": [
+				{
+					"name": "Scale Out - Add Node",
+					"request": {
+						"url": "{{Server}}/lcm/api/v1/action/addNode",
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"environmentId\": \"8c7e3ea7e945f475558855d497c68\",\n  \"dataCenterId\": \"BLR\",\n  \"productId\": \"vrli\",\n  \"version\": \"4.3.0\",\n  \"node\": {\n    \"type\": \"vrli-worker\",\n    \"sourceLink\": \"\",\n    \"properties\": {\n      \"name\": \"VM Name\",\n      \"cluster\": \"\",\n      \"ipAddress\": \"1.1.1.1\",\n      \"dns\": \"\",\n      \"vCenterHost\": \"hostname\",\n      \"storage\": \"\",\n      \"network\": \"\",\n      \"hostname\": \"hostname\",\n      \"netmask\": \"\",\n      \"domain\": \"\",\n      \"diskFormat\": \"\",\n      \"searchpath\": \"\",\n      \"gateway\": \"\",\n      \"deployOption\": \"\",\n      \"userName\": \"vCenter Username\",\n      \"password\": \"password\"\n    }\n  }\n}"
+						},
+						"description": "Add additional component (additional node) to an existing product in the environment.\n- Only one node addition can be triggered per addNode request\n- Out of the available node types the following node types cannot be scaled: 'vra-server-primary', 'db', 'vrli-master','iaas-manager-active','master','managementagent','replica'\n- Out of all the properties ipAddress, hostname and name (VM Name) are mandatory parameters to be set\n- Use 'Component List' samples to find the available node-type's for a particular product and version\n- Use 'Node Properties List' samples to find the required properties to be added for a node. Each property name can be identified from the 'Key' in the response from 'Node Properties List' APIs"
+					},
+					"response": []
+				},
+				{
+					"name": "View Node",
+					"request": {
+						"url": {
+							"raw": "{{Server}}/lcm/api/v1/view/node?nodeId={{nodeId}}",
+							"auth": {},
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"lcm",
+								"api",
+								"v1",
+								"view",
+								"node"
+							],
+							"query": [
+								{
+									"key": "nodeId",
+									"value": "{{nodeId}}"
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "View Node by Product Id",
+					"request": {
+						"url": {
+							"raw": "{{Server}}/lcm/api/v1/view/node?productId={{productId}}",
+							"auth": {},
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"lcm",
+								"api",
+								"v1",
+								"view",
+								"node"
+							],
+							"query": [
+								{
+									"key": "productId",
+									"value": "{{productId}}"
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "List Nodes",
+					"request": {
+						"url": "{{Server}}/lcm/api/v1/view/node",
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "product",
+			"description": "",
+			"item": [
+				{
+					"name": "Add Product",
+					"request": {
+						"url": {
+							"raw": "{{Server}}/lcm/api/v1/action/add/product?id={{environmentid}}",
+							"auth": {},
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"lcm",
+								"api",
+								"v1",
+								"action",
+								"add",
+								"product"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{environmentid}}",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"vrbc\",\n  \"version\": \"7.3.0\",\n  \"clusterVIP\": [],\n  \"properties\": {\n    \"currency\": \"USD - US Dollar\"\n  },\n  \"nodes\": [\n    {\n      \"sourceLink\": \"\",\n      \"type\": \"vrb-server\",\n      \"properties\": {\n        \"esxHost\": \"w3-hs1-050220.eng.vmware.com\",\n        \"guestFullName\": \"SUSE Linux Enterprise 12 (64-bit)\",\n        \"ipAddress\": \"10.198.34.127\",\n        \"cpu\": \"4\",\n        \"vCenterHost\": \"lcm-vc.sqa.local\",\n        \"ssoTenant\": \"vsphere.local\",\n        \"storage\": \"FC-LUN-15 TB\",\n        \"userName\": \"Administrator@vsphere.local\",\n        \"productName\": \"vRealize Business for Cloud\",\n        \"network\": \"infra-traffic-1006\",\n        \"isTelemetryEnable\": \"true\",\n        \"hostname\": \"lcm-34-127.sqa.local\",\n        \"password\": \"Vk13YXJlMSE=\",\n        \"productVersion\": \"7.2.1.10029 Build 5101870\",\n        \"powerState\": \"poweredOn\",\n        \"cafeHost\": \"lcm-34-121.sqa.local\",\n        \"memoryInMb\": \"8192\",\n        \"name\": \"S2-vrb-server\",\n        \"vrbRootPassword\": \"\"\n      }\n    }\n  ]\n}"
+						},
+						"description": "Adds a new vRealize Suite product to an existing environment."
+					},
+					"response": []
+				},
+				{
+					"name": "List Products",
+					"request": {
+						"url": "{{Server}}/lcm/api/v1/view/product",
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "View Product by environment Id",
+					"request": {
+						"url": {
+							"raw": "{{Server}}/lcm/api/v1/view/product?environmentId={{environmentId}}",
+							"auth": {},
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"lcm",
+								"api",
+								"v1",
+								"view",
+								"product"
+							],
+							"query": [
+								{
+									"key": "environmentId",
+									"value": "{{environmentId}}"
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "View Product",
+					"request": {
+						"url": {
+							"raw": "{{Server}}/lcm/api/v1/view/product?productId={{productId}}",
+							"auth": {},
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"lcm",
+								"api",
+								"v1",
+								"view",
+								"product"
+							],
+							"query": [
+								{
+									"key": "productId",
+									"value": "{{productId}}"
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "request",
+			"description": "",
+			"item": [
+				{
+					"name": "Request Status",
+					"request": {
+						"url": "{{Server}}/lcm/api/v1/request/status/{{requestid}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Request Retry",
+					"request": {
+						"url": "{{Server}}/lcm/api/v1/request/retry/{{requestid}}",
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n      \"eventId\": \"a6d6e3a0-8dd9-4025-8b73-ac3544a5152d\",\n      \"messageId\": \"LCMCOMMON80015\",\n      \"message\": \"Invalid details for VC data collection. Please enter correct hostname,username and password.\",\n      \"properties\": {\n        \"password\": \"bbb\",\n        \"vCenterHost\": \"pf-site03-vc.sqa.local\",\n        \"userName\": \"administrator@vsphere.local\"\n      }\n    }\n  ]"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "settings",
+			"description": "",
+			"item": [
+				{
+					"name": "Configuration Settings",
+					"request": {
+						"url": "{{Server}}/lcm/api/v1/settings",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"adminPassword\": \"VMware1!\",\r\n  \"rootPassword\": \"VMware1!\",\r\n  \"sshuserPassword\": \"VMware1!\",\r\n  \"sshEnabled\": true,\r\n  \"telemetryEnabled\": true,\r\n  \"hostName\": \"wdc-prod-99-199.sqa.local\",\r\n  \"configType\": \"\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "vIDM Settings",
+					"request": {
+						"url": "{{Server}}/lcm/api/v1/settings/add/vidm",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"hostname\": \"wdc-prod-99-199.sqa.local\",\r\n  \"adminUserName\": \"admin\",\r\n  \"adminPassword\": \"VMware1!\",\r\n  \"vidmCloudAdminGroup\": \"ALL USERS\",\r\n  \"enabled\": true\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "MyVMware Settings",
+					"request": {
+						"url": "{{Server}}/lcm/api/v1/settings/add/myvmware",
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"testuser@vmware.com\",\r\n  \"password\": \"VMware1!\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "vcenter",
+			"description": "",
+			"item": [
+				{
+					"name": "Add vCenter",
+					"request": {
+						"url": "{{Server}}/lcm/api/v1/action/add/vc",
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"datacenterName\": \"BANGALOR_DATA_CENTER\",\r\n  \"vCenterName\": \"lcm-vc.domain.local\",\r\n  \"userName\": \"admin@localhost\",\r\n  \"password\": \"\",\r\n  \"type\": 3\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update vCenter",
+					"request": {
+						"url": "{{Server}}/lcm/api/v1/action/add/vc",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-xenon-auth-token",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"datacenterName\": \"BANGALOR_DATA_CENTER\",\r\n  \"vCenterName\": \"lcm-vc.domain.local\",\r\n  \"userName\": \"admin@localhost\",\r\n  \"password\": \"\",\r\n  \"type\": 3\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Version",
+			"request": {
+				"url": "{{Server}}/lcm/api/v1/version",
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-xenon-auth-token",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Collect Logs",
+			"request": {
+				"url": "{{Server}}/lcm/api/v1/collectlogs/environment",
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-xenon-auth-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Component List - vRA 7.2.0",
+			"request": {
+				"url": {
+					"raw": "{{Server}}/lcm/api/productinfo?productId=vra&version=7.2.0&queryFor=listOfComponents",
+					"auth": {},
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"lcm",
+						"api",
+						"productinfo"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "vra",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "version",
+							"value": "7.2.0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "queryFor",
+							"value": "listOfComponents",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-xenon-auth-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "List of components (nodes) available for vRA 7.2.0"
+			},
+			"response": []
+		},
+		{
+			"name": "Component List - vRBC 7.3.0",
+			"request": {
+				"url": {
+					"raw": "{{Server}}/lcm/api/productinfo?productId=vrbc&version=7.3.0&queryFor=listOfComponents",
+					"auth": {},
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"lcm",
+						"api",
+						"productinfo"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "vrbc",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "version",
+							"value": "7.3.0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "queryFor",
+							"value": "listOfComponents",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-xenon-auth-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "List of components (nodes) available for vRBC 7.3.0"
+			},
+			"response": []
+		},
+		{
+			"name": "Component List - vRLI 4.5.0",
+			"request": {
+				"url": {
+					"raw": "{{Server}}/lcm/api/productinfo?productId=vrli&version=4.5.0&queryFor=listOfComponents",
+					"auth": {},
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"lcm",
+						"api",
+						"productinfo"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "vrli",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "version",
+							"value": "4.5.0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "queryFor",
+							"value": "listOfComponents",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-xenon-auth-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "List of components (nodes) available for vRLI 4.5.0"
+			},
+			"response": []
+		},
+		{
+			"name": "Component List - vROPs 6.6.1",
+			"request": {
+				"url": {
+					"raw": "{{Server}}/lcm/api/productinfo?productId=vrops&version=6.6.1&queryFor=listOfComponents",
+					"auth": {},
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"lcm",
+						"api",
+						"productinfo"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "vrops",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "version",
+							"value": "6.6.1",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "queryFor",
+							"value": "listOfComponents",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-xenon-auth-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "List of components (nodes) available for vROPs 6.6.1"
+			},
+			"response": []
+		},
+		{
+			"name": "Node Properties List - vRA 7.2.0 - proxy-agent-vsphere",
+			"request": {
+				"url": {
+					"raw": "{{Server}}/lcm/api/policy/property?productId=vra&productVersion=7.2.0&action=install&nodeId=proxy-agent-vsphere",
+					"auth": {},
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"lcm",
+						"api",
+						"policy",
+						"property"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "vra",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "productVersion",
+							"value": "7.2.0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "action",
+							"value": "install",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "nodeId",
+							"value": "proxy-agent-vsphere",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-xenon-auth-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "List of properties available for node type \"proxy-agent-vsphere\""
+			},
+			"response": []
+		},
+		{
+			"name": "Node Properties List - vRA 7.2.0 - iaas-dem-orchestrator",
+			"request": {
+				"url": {
+					"raw": "{{Server}}/lcm/api/policy/property?productId=vra&productVersion=7.2.0&action=install&nodeId=iaas-dem-orchestrator",
+					"auth": {},
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"lcm",
+						"api",
+						"policy",
+						"property"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "vra",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "productVersion",
+							"value": "7.2.0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "action",
+							"value": "install",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "nodeId",
+							"value": "iaas-dem-orchestrator",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-xenon-auth-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "List of properties available for node type \"iaas-dem-orchestrator\""
+			},
+			"response": []
+		},
+		{
+			"name": "Node Properties List - vRA 7.2.0 - iaas-dem-worker",
+			"request": {
+				"url": {
+					"raw": "{{Server}}/lcm/api/policy/property?productId=vra&productVersion=7.2.0&action=install&nodeId=iaas-dem-worker",
+					"auth": {},
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"lcm",
+						"api",
+						"policy",
+						"property"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "vra",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "productVersion",
+							"value": "7.2.0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "action",
+							"value": "install",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "nodeId",
+							"value": "iaas-dem-worker",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-xenon-auth-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "List of properties available for node type \"iaas-dem-worker\""
+			},
+			"response": []
+		},
+		{
+			"name": "Node Properties List - vRA 7.2.0 - iaas-manager-passive",
+			"request": {
+				"url": {
+					"raw": "{{Server}}/lcm/api/policy/property?productId=vra&productVersion=7.2.0&action=install&nodeId=iaas-manager-passive",
+					"auth": {},
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"lcm",
+						"api",
+						"policy",
+						"property"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "vra",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "productVersion",
+							"value": "7.2.0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "action",
+							"value": "install",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "nodeId",
+							"value": "iaas-manager-passive",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-xenon-auth-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "List of properties available for node type \"iaas-manager-passive\""
+			},
+			"response": []
+		},
+		{
+			"name": "Node Properties List - vRA 7.2.0 - vra-server-secondary",
+			"request": {
+				"url": {
+					"raw": "{{Server}}/lcm/api/policy/property?productId=vra&productVersion=7.2.0&action=install&nodeId=vra-server-secondary",
+					"auth": {},
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"lcm",
+						"api",
+						"policy",
+						"property"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "vra",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "productVersion",
+							"value": "7.2.0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "action",
+							"value": "install",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "nodeId",
+							"value": "vra-server-secondary",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-xenon-auth-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "List of properties available for node type \"vra-server-secondary\""
+			},
+			"response": []
+		},
+		{
+			"name": "Node Properties List - vRA 7.2.0 - iaas-web",
+			"request": {
+				"url": {
+					"raw": "{{Server}}/lcm/api/policy/property?productId=vra&productVersion=7.2.0&action=install&nodeId=iaas-web",
+					"auth": {},
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"lcm",
+						"api",
+						"policy",
+						"property"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "vra",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "productVersion",
+							"value": "7.2.0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "action",
+							"value": "install",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "nodeId",
+							"value": "iaas-web",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-xenon-auth-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "List of properties available for node type \"iaas-web\""
+			},
+			"response": []
+		},
+		{
+			"name": "Node Properties List - vRBC 7.3.0 - vrb-collector",
+			"request": {
+				"url": {
+					"raw": "{{Server}}/lcm/api/policy/property?productId=vrbc&productVersion=7.3.0&action=install&nodeId=vrb-collector",
+					"auth": {},
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"lcm",
+						"api",
+						"policy",
+						"property"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "vrbc",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "productVersion",
+							"value": "7.3.0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "action",
+							"value": "install",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "nodeId",
+							"value": "vrb-collector",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-xenon-auth-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "List of properties available for node type \"vrb-collector\""
+			},
+			"response": []
+		},
+		{
+			"name": "Node Properties List - vRBC 7.3.0 - vrb-server",
+			"request": {
+				"url": {
+					"raw": "{{Server}}/lcm/api/policy/property?productId=vrbc&productVersion=7.3.0&action=install&nodeId=vrb-collector",
+					"auth": {},
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"lcm",
+						"api",
+						"policy",
+						"property"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "vrbc",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "productVersion",
+							"value": "7.3.0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "action",
+							"value": "install",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "nodeId",
+							"value": "vrb-collector",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-xenon-auth-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "List of properties available for node type \"vrb-server\""
+			},
+			"response": []
+		},
+		{
+			"name": "Node Properties List - vRLI 4.5.0 - vrli-worker",
+			"request": {
+				"url": {
+					"raw": "{{Server}}/lcm/api/policy/property?productId=vrli&productVersion=4.5.0&action=install&nodeId=vrli-worker",
+					"auth": {},
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"lcm",
+						"api",
+						"policy",
+						"property"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "vrli",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "productVersion",
+							"value": "4.5.0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "action",
+							"value": "install",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "nodeId",
+							"value": "vrli-worker",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-xenon-auth-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "List of properties available for node type \"vrli-worker\""
+			},
+			"response": []
+		},
+		{
+			"name": "Node Properties List - vROPs 6.6.1 - data",
+			"request": {
+				"url": {
+					"raw": "{{Server}}/lcm/api/policy/property?productId=vrops&productVersion=6.6.1&action=install&nodeId=data",
+					"auth": {},
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"lcm",
+						"api",
+						"policy",
+						"property"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "vrops",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "productVersion",
+							"value": "6.6.1",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "action",
+							"value": "install",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "nodeId",
+							"value": "data",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-xenon-auth-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "List of properties available for node type \"data\""
+			},
+			"response": []
+		},
+		{
+			"name": "Node Properties List - vROPs 6.6.1 - remotecollector",
+			"request": {
+				"url": {
+					"raw": "{{Server}}/lcm/api/policy/property?productId=vrops&productVersion=6.6.1&action=install&nodeId=remotecollector",
+					"auth": {},
+					"host": [
+						"{{Server}}"
+					],
+					"path": [
+						"lcm",
+						"api",
+						"policy",
+						"property"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "vrops",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "productVersion",
+							"value": "6.6.1",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "action",
+							"value": "install",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "nodeId",
+							"value": "remotecollector",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-xenon-auth-token",
+						"value": "{{token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "List of properties available for node type \"remotecollector\""
+			},
+			"response": []
+		}
+	]
+}

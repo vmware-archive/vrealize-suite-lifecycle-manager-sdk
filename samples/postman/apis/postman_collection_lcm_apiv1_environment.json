@@ -1,0 +1,28 @@
+{
+  "id": "133d6dbe-0544-4adc-c856-ba1696ef386f",
+  "name": "LCM Environment",
+  "values": [
+    {
+      "enabled": true,
+      "key": "Server",
+      "value": "localhost:8000",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "token",
+      "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ4biIsInN1YiI6Ii9jb3JlL2F1dGh6L3VzZXJzL3ZMQ01BZG1pbiIsImV4cCI6MTUwNDg3MjE1Nn0.bZDUTLd8LHIm-wSVEZ4xIf-j42Ti3eaxBdZtOVrEeLU",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "requestid",
+      "value": "d4f9e297d6f3875558a9c6254978",
+      "type": "text"
+    }
+  ],
+  "timestamp": 1504868557322,
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2017-09-18T04:51:10.526Z",
+  "_postman_exported_using": "Postman/4.11.0"
+}
