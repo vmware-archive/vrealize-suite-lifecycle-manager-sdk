@@ -1,0 +1,159 @@
+{
+	"id": "3233e965-b416-45b2-89af-c10a0eec8fbf",
+	"name": "vRSLCM",
+	"values": [
+		{
+			"key": "vRSLCM_URL",
+			"value": "https://lcm-hostName",
+			"enabled": true
+		},
+		{
+			"key": "vIDM_URL",
+			"value": "https://vidm-hostName",
+			"enabled": true
+		},
+		{
+			"key": "licenseAlias",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "productId",
+			"value": "vrops",
+			"enabled": true
+		},
+		{
+			"key": "environmentId",
+			"value": "globalenvironment",
+			"enabled": true
+		},
+		{
+			"key": "snapShotName",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "requestId",
+			"value": null,
+			"enabled": true
+		},
+		{
+			"key": "enableDisable",
+			"value": "Enable",
+			"enabled": true
+		},
+		{
+			"key": "dataCenterVmid",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "licenseVmid",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "passwordVmid",
+			"value": null,
+			"enabled": true
+		},
+		{
+			"key": "lockerVmid",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "dataCenterName",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "primaryLocation",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "vCenterName",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "passwordAlias",
+			"value": null,
+			"enabled": true
+		},
+		{
+			"key": "passwordDescription",
+			"value": null,
+			"enabled": true
+		},
+		{
+			"key": "passwordUserName",
+			"value": null,
+			"enabled": true
+		},
+		{
+			"key": "certificateVmid",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "userName",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "domain",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "providerId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "upn",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "userRoleVmid",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "displayName",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "version",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "vcUsed",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "user_admin_local",
+			"value": "admin@local",
+			"enabled": true
+		},
+		{
+			"key": "certificateAlias",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "configurationType",
+			"value": "simple",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2020-09-28T09:26:58.841Z",
+	"_postman_exported_using": "Postman/7.2.0"
+}
